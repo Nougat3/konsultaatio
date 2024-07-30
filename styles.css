@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 20%; /* Alkuperäinen leveys pienennetty 80% */
+    padding: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    padding: 8px 12px;
+    font-size: 14px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 10px;
+    }
+    .form-group label, .form-group input, .form-group button, .result {
+        font-size: 12px;
+    }
+    .form-group input {
+        width: 100%; /* Pienillä näytöillä täysleveä */
+    }
+    .form-group button {
+        padding: 6px 10px;
+    }
+    .result {
+        padding: 8px;
+    }
+}
