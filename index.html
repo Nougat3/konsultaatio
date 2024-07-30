@@ -10,76 +10,28 @@
     <h1>Hoitajan Konsultaatiosovellus</h1>
     <form id="consultationForm">
         <div class="form-group">
-            <label for="hb">Hemoglobiini (Hb):</label>
-            <input type="number" id="hb" name="hb" required>
+            <label for="hb-status">Hemoglobiini (Hb): <span id="hb-range">(134–167 g/l miehillä, 117–155 g/l naisilla)</span></label>
+            <select id="hb-status" name="hb-status" required>
+                <option value="normaali">Normaali</option>
+                <option value="poikkeava">Poikkeava</option>
+            </select>
+            <input type="number" id="hb" name="hb" placeholder="Syötä Hb-arvo" style="display:none;">
         </div>
         <div class="form-group">
-            <label for="leuk">Leukosyytit (Leuk):</label>
-            <input type="number" id="leuk" name="leuk" required>
+            <label for="leuk-status">Leukosyytit (Leuk): <span id="leuk-range">(3.4–8.2 x 10^9/l aikuisilla)</span></label>
+            <select id="leuk-status" name="leuk-status" required>
+                <option value="normaali">Normaali</option>
+                <option value="poikkeava">Poikkeava</option>
+            </select>
+            <input type="number" id="leuk" name="leuk" placeholder="Syötä Leuk-arvo" style="display:none;">
         </div>
         <div class="form-group">
-            <label for="trom">Trombosyytit (Trom):</label>
-            <input type="number" id="trom" name="trom" required>
-        </div>
-        <div class="form-group">
-            <label for="k">Kalium (K):</label>
-            <input type="number" id="k" name="k" required>
-        </div>
-        <div class="form-group">
-            <label for="na">Natrium (Na):</label>
-            <input type="number" id="na" name="na" required>
-        </div>
-        <div class="form-group">
-            <label for="krea">Kreatiniini (Krea):</label>
-            <input type="number" id="krea" name="krea" required>
-        </div>
-        <div class="form-group">
-            <label for="crp">C-reaktiivinen proteiini (CRP):</label>
-            <input type="number" id="crp" name="crp" required>
-        </div>
-        <div class="form-group">
-            <label for="vs">Verensokeri (Vs):</label>
-            <input type="number" id="vs" name="vs" required>
-        </div>
-        <div class="form-group">
-            <label for="ca">Ionisoitu kalsium (Ca-ion):</label>
-            <input type="number" id="ca" name="ca" required>
-        </div>
-        <div class="form-group">
-            <label for="tsh">TSH:</label>
-            <input type="number" id="tsh" name="tsh" required>
-        </div>
-        <div class="form-group">
-            <label for="t4v">T4-V:</label>
-            <input type="number" id="t4v" name="t4v" required>
-        </div>
-        <div class="form-group">
-            <label for="t3v">T3-V:</label>
-            <input type="number" id="t3v" name="t3v" required>
-        </div>
-        <div class="form-group">
-            <label for="bp_systolic">Verenpaine (Systolinen):</label>
-            <input type="number" id="bp_systolic" name="bp_systolic" required>
-        </div>
-        <div class="form-group">
-            <label for="bp_diastolic">Verenpaine (Diastolinen):</label>
-            <input type="number" id="bp_diastolic" name="bp_diastolic" required>
-        </div>
-        <div class="form-group">
-            <label for="pulse">Pulssi:</label>
-            <input type="number" id="pulse" name="pulse" required>
-        </div>
-        <div class="form-group">
-            <label for="saturation">Saturaatio (%):</label>
-            <input type="number" id="saturation" name="saturation" required>
-        </div>
-        <div class="form-group">
-            <label for="respiratory">Hengitystiheys:</label>
-            <input type="number" id="respiratory" name="respiratory" required>
-        </div>
-        <div class="form-group">
-            <label for="weight">Paino (kg):</label>
-            <input type="number" id="weight" name="weight" required>
+            <label for="trom-status">Trombosyytit (Trom): <span id="trom-range">(150–360 x 10^9/l aikuisilla)</span></label>
+            <select id="trom-status" name="trom-status" required>
+                <option value="normaali">Normaali</option>
+                <option value="poikkeava">Poikkeava</option>
+            </select>
+            <input type="number" id="trom" name="trom" placeholder="Syötä Trom-arvo" style="display:none;">
         </div>
         <div class="form-group">
             <button type="submit">Lähetä</button>
@@ -89,3 +41,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
