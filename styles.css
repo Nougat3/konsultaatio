@@ -14,10 +14,23 @@ body {
 }
 
 .form-group select, .form-group input {
-    width: 100%; /* Skaalautuu hyvin mobiililaitteille */
+    width: auto; /* Leveys määräytyy sisällön mukaan */
     padding: 6px;
     font-size: 14px;
     box-sizing: border-box;
+    border: none; /* Poistetaan reunaviivat */
+    border-bottom: 1px solid #ccc; /* Alleviivaus */
+    outline: none; /* Poistetaan fokusreuna */
+}
+
+.form-group input[type="number"] {
+    text-align: right; /* Numerot oikealle */
+}
+
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none; /* Poistetaan numerokenttien nuolinäppäimet */
+    margin: 0;
 }
 
 .form-group button {
@@ -32,9 +45,9 @@ body {
 .result {
     margin-top: 20px;
     padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
     font-size: 14px;
+    border: none; /* Poistetaan reunaviivat */
+    background-color: transparent; /* Poistetaan taustaväri */
 }
 
 @media (max-width: 600px) {
@@ -44,6 +57,9 @@ body {
     .form-group label, .form-group select, .form-group input, .form-group button, .result {
         font-size: 12px;
     }
+    .form-group select, .form-group input {
+        width: 100%; /* Pienennetty leveys mobiililaitteilla */
+    }
     .form-group button {
         padding: 6px 10px;
     }
@@ -51,3 +67,4 @@ body {
         padding: 8px;
     }
 }
+
