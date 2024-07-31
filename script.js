@@ -1,79 +1,53 @@
 window.addEventListener('load', function() {
-    const hbStatus = document.getElementById('hb-status');
-    const hbInput = document.getElementById('hb');
-    const leukStatus = document.getElementById('leuk-status');
-    const leukInput = document.getElementById('leuk');
-    const tromStatus = document.getElementById('trom-status');
-    const tromInput = document.getElementById('trom');
+    const fields = [
+        { id: 'hb', statusId: 'hb-status' },
+        { id: 'leuk', statusId: 'leuk-status' },
+        { id: 'trom', statusId: 'trom-status' }
+    ];
 
-    hbStatus.addEventListener('change', function() {
-        if (hbStatus.value === 'poikkeava') {
-            hbInput.style.display = 'block';
-        } else {
-            hbInput.style.display = 'none';
-        }
-    });
-
-    leukStatus.addEventListener('change', function() {
-        if (leukStatus.value === 'poikkeava') {
-            leukInput.style.display = 'block';
-        } else {
-            leukInput.style.display = 'none';
-        }
-    });
-
-    tromStatus.addEventListener('change', function() {
-        if (tromStatus.value === 'poikkeava') {
-            tromInput.style.display = 'block';
-        } else {
-            tromInput.style.display = 'none';
-        }
+    fields.forEach(field => {
+        const statusElement = document.getElementById(field.statusId);
+        const inputElement = document.getElementById(field.id);
+        
+        statusElement.addEventListener('change', function() {
+            inputElement.style.display = statusElement.value === 'poikkeava' ? 'block' : 'none';
+        });
     });
 
     document.getElementById('consultationForm').addEventListener('submit', function(event) {
         event.preventDefault();
         const resultDiv = document.getElementById('result');
-        let message = 'Hoito-ohjeet:<br>';
+        let message = '<h2>Hoito-ohjeet:</h2>';
 
-        // Hemoglobiini (Hb)
-        if (hbStatus.value === 'normaali') {
-            message += 'Hb normaali.<br>';
-        } else if (hbStatus.value === 'poikkeava') {
-            const hbValue = parseFloat(hbInput.value);
-            if (hbValue < 90) {
-                message += `Hb poikkeava, arvo ${hbValue}, kiireellinen!<br>`;
-            } else if (hbValue >= 90 && hbValue < 100) {
-                message += `Hb poikkeava, arvo ${hbValue}, puolikiireellinen.<br>`;
-            } else if (hbValue <= 20) {
-                message += `Hb laskenut alle 20 yksikköä, arvo ${hbValue}, kiireetön.<br>`;
-            } else {
-                message += `Hb poikkeava, arvo ${hbValue}, kiireetön.<br>`;
-            }
-        }
+        fields.forEach(field => {
+            const statusElement = document.getElementById(field.statusId);
+            const inputElement = document.getElementById(field.id);
 
-        // Leukosyytit (Leuk)
-        if (leukStatus.value === 'normaali') {
-            message += 'Leuk normaali.<br>';
-        } else if (leukStatus.value === 'poikkeava') {
-            const leukValue = parseFloat(leukInput.value);
-            if (leukValue < 1 || leukValue > 15) {
-                message += `Leuk poikkeava, arvo ${leukValue}, kiireellinen!<br>`;
-            } else if ((leukValue >= 1 && leukValue <= 3) || (leukValue > 10 && leukValue <= 15)) {
-                message += `Leuk poikkeava, arvo ${leukValue}, kiireetön.<br>`;
+            if (statusElement.value === 'normaali') {
+                message += `<h3>${field.id.toUpperCase()}</h3><p>Normaalit viitearvot. Arvo on normaali.</p>`;
+            } else if (statusElement.value === 'poikkeava') {
+                const value = parseFloat(inputElement.value);
+                message += `<h3>${field.id.toUpperCase()}</h3><p>Arvo: ${value}</p><p>Poikkeavuudet ja mahdolliset syyt:</p>`;
+                switch (field.id) {
+                    case 'hb':
+                        message += `<p>Normaaliarvot:</p><p>Miehet: 134–167 g/l</p><p>Naiset: 117–155 g/l</p>`;
+                        if (value < 117) message += `<p><strong>Matala Hb:</strong> Anemia, krooniset sairaudet, verenvuoto. Arvo: ${value}, kiireellinen!</p>`;
+                        else if (value < 134) message += `<p><strong>Matala Hb:</strong> Anemia, krooniset sairaudet, verenvuoto. Arvo: ${value}, puolikiireellinen.</p>`;
+                        else if (value > 167) message += `<p><strong>Korkea Hb:</strong> Polysytemia, krooninen keuhkosairaus, kuivuminen. Arvo: ${value}, kiireetön.</p>`;
+                        break;
+                    case 'leuk':
+                        message += `<p>Normaaliarvot:</p><p>Aikuiset: 3.4–8.2 x 10^9/l</p>`;
+                        if (value < 3.4) message += `<p><strong>Matala Leuk:</strong> Infektiot, luuydinsairaudet, autoimmuunisairaudet. Arvo: ${value}, kiireellinen!</p>`;
+                        else if (value > 8.2) message += `<p><strong>Korkea Leuk:</strong> Infektiot, tulehdukset, leukemiat. Arvo: ${value}, kiireellinen!</p>`;
+                        break;
+                    case 'trom':
+                        message += `<p>Normaaliarvot:</p><p>Aikuiset: 150–360 x 10^9/l</p>`;
+                        if (value < 150) message += `<p><strong>Matala Trom:</strong> Verenvuototaipumus, luuydinsairaudet, lääkkeiden sivuvaikutukset. Arvo: ${value}, kiireellinen!</p>`;
+                        else if (value > 360) message += `<p><strong>Korkea Trom:</strong> Tulehdukset, krooniset sairaudet, syöpä. Arvo: ${value}, kiireetön.</p>`;
+                        break;
+                }
             }
-        }
-
-        // Trombosyytit (Trom)
-        if (tromStatus.value === 'normaali') {
-            message += 'Trom normaali.<br>';
-        } else if (tromStatus.value === 'poikkeava') {
-            const tromValue = parseFloat(tromInput.value);
-            if (tromValue < 20) {
-                message += `Trom poikkeava, arvo ${tromValue}, kiireellinen!<br>`;
-            } else if (tromValue >= 20 && tromValue <= 100) {
-                message += `Trom poikkeava, arvo ${tromValue}, kiireetön.<br>`;
-            }
-        }
+        });
 
         resultDiv.innerHTML = message;
     });

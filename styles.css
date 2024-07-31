@@ -14,7 +14,7 @@ body {
 }
 
 .form-group select, .form-group input {
-    width: 20%; /* Alkuperäinen leveys pienennetty 80% */
+    width: 100%; /* Skaalautuu hyvin mobiililaitteille */
     padding: 6px;
     font-size: 14px;
     box-sizing: border-box;
@@ -43,9 +43,6 @@ body {
     }
     .form-group label, .form-group select, .form-group input, .form-group button, .result {
         font-size: 12px;
-    }
-    .form-group select, .form-group input {
-        width: 100%; /* Pienillä näytöillä täysleveä */
     }
     .form-group button {
         padding: 6px 10px;

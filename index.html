@@ -9,29 +9,32 @@
 <body>
     <h1>Hoitajan Konsultaatiosovellus</h1>
     <form id="consultationForm">
+        <!-- Hb -->
         <div class="form-group">
             <label for="hb-status">Hemoglobiini (Hb): <span id="hb-range">(134–167 g/l miehillä, 117–155 g/l naisilla)</span></label>
             <select id="hb-status" name="hb-status" required>
                 <option value="normaali">Normaali</option>
                 <option value="poikkeava">Poikkeava</option>
             </select>
-            <input type="number" id="hb" name="hb" placeholder="Syötä Hb-arvo" style="display:none;">
+            <input type="number" step="0.1" id="hb" name="hb" placeholder="Syötä Hb-arvo" style="display:none;">
         </div>
+        <!-- Leuk -->
         <div class="form-group">
             <label for="leuk-status">Leukosyytit (Leuk): <span id="leuk-range">(3.4–8.2 x 10^9/l aikuisilla)</span></label>
             <select id="leuk-status" name="leuk-status" required>
                 <option value="normaali">Normaali</option>
                 <option value="poikkeava">Poikkeava</option>
             </select>
-            <input type="number" id="leuk" name="leuk" placeholder="Syötä Leuk-arvo" style="display:none;">
+            <input type="number" step="0.1" id="leuk" name="leuk" placeholder="Syötä Leuk-arvo" style="display:none;">
         </div>
+        <!-- Trom -->
         <div class="form-group">
             <label for="trom-status">Trombosyytit (Trom): <span id="trom-range">(150–360 x 10^9/l aikuisilla)</span></label>
             <select id="trom-status" name="trom-status" required>
                 <option value="normaali">Normaali</option>
                 <option value="poikkeava">Poikkeava</option>
             </select>
-            <input type="number" id="trom" name="trom" placeholder="Syötä Trom-arvo" style="display:none;">
+            <input type="number" step="0.1" id="trom" name="trom" placeholder="Syötä Trom-arvo" style="display:none;">
         </div>
         <div class="form-group">
             <button type="submit">Lähetä</button>
@@ -41,4 +44,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
